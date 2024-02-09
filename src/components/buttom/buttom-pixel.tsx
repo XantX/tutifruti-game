@@ -7,7 +7,7 @@ export interface ButtonProps {
 function ButtomPixel(props: ButtonProps) {
   return (
     <>
-      <button>{props.title}</button>
+      <button className="button-pixel">{props.title}</button>
     </>
   )
 }
