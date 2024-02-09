@@ -1,9 +1,13 @@
+import "./config-menu-page.css";
+
 function ConfigMenuPage() {
   return (
     <>
-      <div> Config menu</div>
+      <div className="config-menu-page">
+        Configuracion
+      </div>
     </>
-  )
+  );
 }
 
-export default ConfigMenuPage
+export default ConfigMenuPage;
