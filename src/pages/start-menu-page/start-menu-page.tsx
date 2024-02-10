@@ -37,7 +37,7 @@ function StartMenuPage() {
         </div>
         <div>
           <Link to="/config">
-            <ButtomPixel title="Comenzar"></ButtomPixel>
+            <ButtomPixel title="Comenzar" action={() => {}}></ButtomPixel>
           </Link>
         </div>
         <div>

@@ -1,13 +1,14 @@
 import './button-pixel.css'
 
 export interface ButtonProps {
-  title: string
+  title: string,
+  action: (() => void) | ((arg: string) => void) | ((num: number) => void),
 }
 
 function ButtomPixel(props: ButtonProps) {
   return (
     <>
-      <button className="button-pixel">{props.title}</button>
+      <button onClick={props.action} className="button-pixel">{props.title}</button>
     </>
   )
 }
