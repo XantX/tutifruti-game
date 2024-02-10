@@ -1,5 +1,6 @@
 import ButtomPixel from "../../components/buttom/buttom-pixel";
 import InputPixel from "../../components/imput/input-pixel";
+import PlayerList from "../../components/player-list/player-list";
 import SelectorPixel from "../../components/selector/selector-pixel";
 import "./config-menu-page.css";
 
@@ -12,6 +13,7 @@ function ConfigMenuPage() {
             <div className="row">
               <div className="card">
                 <p>Agregar player</p>
+                <PlayerList players={[]}></PlayerList>
               </div>
             </div>
           </div>
