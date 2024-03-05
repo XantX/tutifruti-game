@@ -3,11 +3,13 @@ interface InputPixelProp {
   type: string;
   index: number;
   onChange: (() => void) | ((value: number) => void) | ((index: number, value: string) => void) | undefined;
+  styles: string;
 }
 function InputPixel(props: InputPixelProp) {
   return (
     <>
       <input
+        className={props.styles}
         type={props.type}
         value={props.value}
         onChange={(e) => {

@@ -8,6 +8,7 @@
   width: auto;
   min-height: 100vh;
   min-width: 100vh;
+  background-color: rgb(62, 189, 214);
 }
 
 .option-columns {
@@ -28,6 +29,16 @@
 }
 
 .card {
+  display: flex;
+  flex-direction: column;
+  padding: 1.5em;
   width: 90%;
+  background-color: rgb(228, 236, 237);
 }
 
+.button-pixel-config {
+  font-family: upheaval;
+  width: 25rem;
+  height: 5rem;
+  font-size: 3rem;
+}

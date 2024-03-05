@@ -35,13 +35,12 @@ function StartMenuPage() {
             <div className="pixelartI"></div>
           </div>
         </div>
-        <div>
-          <Link to="/config">
-            <ButtomPixel title="Comenzar" action={() => {}}></ButtomPixel>
-          </Link>
-        </div>
-        <div>
-          languages
+        <div className="config-section">
+          <div>
+            <Link to="/config">
+              <ButtomPixel styles="button-pixel" title="Comenzar" action={() => {}}></ButtomPixel>
+            </Link>
+          </div>
         </div>
       </div>
     </>
