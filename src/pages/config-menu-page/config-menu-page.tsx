@@ -8,6 +8,8 @@ import { Player } from "../../types/types";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { startGame } from "../../redux/gameSlice"
+import ModalPixel from "../../components/modal/modal-pixel";
+import CounterPixel from "../../components/counter/counter-pixel";
 
 
 function ConfigMenuPage() {
@@ -15,7 +17,12 @@ function ConfigMenuPage() {
   const [players, setPlayer] = useState<Player[]>([]);
   const [roundTime, setRoundTime] = useState<number>(0);
   const [roundQuantity, setRoundQuantity] = useState<number>(0);
+  const [modalOpen, setModalOpen] = useState(false)
   const dispatch = useDispatch()
+
+  const handleToggleModal = () => {
+    setModalOpen(!modalOpen)
+  }
 
   return (
     <>
@@ -42,7 +49,7 @@ function ConfigMenuPage() {
             <div className="row">
               <div className="card">
                 <p>Tiempo de ronda</p>
-                <InputPixel styles="input-pixel" value={roundTime} index={0} onChange={(value: number) => { setRoundTime(value)}} type="number" ></InputPixel> min
+                <InputPixel styles="input-pixel" value={roundTime} index={0} onChange={(value: number) => { setRoundTime(value)}} type="number" ></InputPixel> sec 
               </div>
             </div>
           </div>
@@ -58,9 +65,15 @@ function ConfigMenuPage() {
         <div className="row">
           <ButtomPixel styles="button-pixel-config" title="Comenzar" action={() => { 
             dispatch(startGame({players, roundTime, roundQuantity}))
-            navigate('/game')
+            setModalOpen(true)
             }}></ButtomPixel>
         </div>
+        <ModalPixel isOpen={modalOpen} toggleModal={handleToggleModal} activeToggleModal={false}>
+          <h2>Inicio de ronda</h2>
+          <CounterPixel time={5} isActive={true} action={() => {
+            navigate('/game')
+          }}></CounterPixel>
+        </ModalPixel>
       </div>
     </>
   );
