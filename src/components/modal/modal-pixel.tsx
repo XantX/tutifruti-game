@@ -19,14 +19,17 @@ function ModalPixel(props: ModalPixelProps){
     borderRadius: '5px',
     boxShadow: '0px 0px 10px rgba(0, 0, 0, 0.5)',
     zIndex: '999',
+
   };
 
   return props.isOpen
     ? ReactDOM.createPortal(
         <div style={modalStyle}>
-          {props.children}
-          {props.activeToggleModal?
+          <div>
+            {props.children}
+            {props.activeToggleModal?
             <button onClick={props.toggleModal}>Cerrar</button>: null}
+          </div>
         </div>,
         document.body
       )

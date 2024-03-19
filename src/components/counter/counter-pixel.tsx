@@ -3,11 +3,13 @@ import { useEffect, useState } from "react";
 interface CounterPixelProps {
   time: number,
   action: (() => void) | ((arg: string) => void) | ((num: number) => void) | (() => boolean)
-  isActive: boolean
+  isActive: boolean,
+  reset: boolean 
 }
 function CounterPixel(props: CounterPixelProps) {
 
   const [countdown, setCountdown] = useState(props.time);
+  const time = props.time
 
   const onTimeEnd = () => {
       const reset: boolean = props.action()
@@ -15,6 +17,10 @@ function CounterPixel(props: CounterPixelProps) {
         setCountdown(props.time)
       }
   }
+  useEffect(() => {
+    console.log('Reiniciando..')
+    setCountdown(time)
+  }, [props.reset])
 
   useEffect(() => {
     let intervalId: number | undefined;
@@ -39,7 +45,9 @@ function CounterPixel(props: CounterPixelProps) {
   }, [onTimeEnd]); 
   return (
     <>
-      <div className="time">{countdown}s</div>
+      <div className="time">
+        <p>{countdown}</p>
+      </div>
     </>
   )
 }
