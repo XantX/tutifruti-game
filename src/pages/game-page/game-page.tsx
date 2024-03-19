@@ -4,6 +4,7 @@ import ButtomPixel from "../../components/buttom/buttom-pixel";
 import CounterPixel from "../../components/counter/counter-pixel";
 import ModalPixel from "../../components/modal/modal-pixel";
 import "./game-page.css"
+import { Link } from "react-router-dom";
 
 function GamePage() {
   const game = useSelector((state) => state.game);
@@ -38,7 +39,14 @@ function GamePage() {
   return (
     <>
       <div className="main-game">
-        <div className="round-count">Round {rounds}/{game.roundQuantity}</div>
+        <div className="floating-button-container">
+          <Link to="/config">
+            <button className="floating-button">&#8592;</button>
+          </Link>
+        </div>
+        <div className="round-count">
+        Round {rounds}/{game.roundQuantity}
+        </div>
         <div className="middle-section">
           <div className="time-panel">
             <CounterPixel reset={resetCounter} time={game.roundTime} isActive={isActiveTimer} action={() => {
