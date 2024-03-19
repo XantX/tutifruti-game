@@ -12,14 +12,18 @@ function GamePage() {
   const [rounds, setRounds] = useState(1);
   const [modalOpen, setModalOpen] = useState(false)
   const [resetCounter, setResetCounter] = useState(false)
+
+  const [modalOpenWait, setModalOpenWait] = useState(false)
+
   console.log(game)
+
+  const handleWaittoggleModal = () => {
+    setModalOpenWait(!modalOpenWait)
+  }
 
   const handleToggleModal = () => {
     setModalOpen(!modalOpen)
-    generateRangomLetter()
-    setRounds(rounds + 1)
-    setResetCounter(!resetCounter)
-    setIsActiveTimer(true)
+    handleWaittoggleModal()
   }
   const generateRangomLetter = () => {
     const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
@@ -38,11 +42,10 @@ function GamePage() {
         <div className="middle-section">
           <div className="time-panel">
             <CounterPixel reset={resetCounter} time={game.roundTime} isActive={isActiveTimer} action={() => {
-            if(rounds != game.roundQuantity) {
-            setRounds(rounds + 1)
-            generateRangomLetter()
-            return true
-            }
+              if(rounds != game.roundQuantity) {
+                setIsActiveTimer(false)
+                setModalOpen(true)
+              } 
             }}></CounterPixel>
             <p>Segundos</p>
           </div>
@@ -55,7 +58,6 @@ function GamePage() {
           <ButtomPixel styles="button-pixel-config" title="Stop" action={() => {
             if(rounds == game.roundQuantity) {
               setIsActiveTimer(false)
-              //View results
               console.log('Mira los resultados')
             } else {
               setIsActiveTimer(false)
@@ -65,6 +67,17 @@ function GamePage() {
         </div>
         <ModalPixel isOpen={modalOpen} toggleModal={handleToggleModal} activeToggleModal={true}>
           <h2>Carga los resultados</h2>
+        </ModalPixel>
+
+        <ModalPixel isOpen={modalOpenWait} toggleModal={handleWaittoggleModal} activeToggleModal={false}>
+          <h2>Siguiente ronda</h2>
+          <CounterPixel reset={false} time={5} isActive={true} action={() => {
+            generateRangomLetter()
+            setRounds(rounds + 1)
+            setResetCounter(!resetCounter)
+            setIsActiveTimer(true)
+            handleWaittoggleModal()
+          }}></CounterPixel>
         </ModalPixel>
       </div>
     </>
